@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/CMlinksuccess/ScanCodePackage"
   spec.license      = 'MIT'
   spec.author       = { "xiaowanjia" => "myemil0@163.com" }
-  spec.source       = { :git => "https://github.com/CMlinksuccess/ScanCodePackage.git", :tag => spec.version }
+  spec.source       = { :git => "https://github.com/CMlinksuccess/ScanCodePackage.git", :tag => "#{spec.version}" }
   spec.platform     = :ios, '13.0'
   spec.requires_arc = true
   
