@@ -80,7 +80,6 @@ class ScanImageAction: NSObject{
             print(error)
         }
     }
-    
 }
 
 extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
@@ -88,7 +87,7 @@ extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControll
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         picker.dismiss(animated: true)
-
+        
         let editedImage = info[.editedImage] as? UIImage
         let originalImage = info[.originalImage] as? UIImage
         guard let image = editedImage ?? originalImage else { return }

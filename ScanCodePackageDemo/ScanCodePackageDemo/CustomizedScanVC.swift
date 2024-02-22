@@ -19,9 +19,6 @@ class CustomizedScanVC: UIViewController {
     var photoBtn: UIButton = UIButton()
     //电筒按钮
     var flashBtn: UIButton = UIButton()
-    
-    let action = ScanImageAction()
-    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -123,6 +120,5 @@ extension CustomizedScanVC:ScanCodeViewDelegate, ScanImageActionDelegate{
     func scanImageDidFinished(result: ScanResult?) {
         print("图片码识别结果回调")
     }
-    
 }
 

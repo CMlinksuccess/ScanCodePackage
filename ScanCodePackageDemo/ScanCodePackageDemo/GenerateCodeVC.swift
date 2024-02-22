@@ -10,9 +10,6 @@ import UIKit
 /***************生成二维码、条形码*************/
 class GenerateCodeVC: UIViewController {
     
-    var scanImageAction: ScanImageAction  = ScanImageAction()
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -38,6 +35,7 @@ class GenerateCodeVC: UIViewController {
     
     
     func QRImageView(){
+        //生成二维码
         let image =  generateQRCodeImage(content: "生成二维码的内容8993847349",size: CGSize(width: 200, height: 200), codeType: "CIQRCodeGenerator",codeColor: .green,bgColor: .white)
         let imageView = UIImageView(image: image)
         imageView.frame = CGRectMake(0, 0, 200, 200)
@@ -46,10 +44,16 @@ class GenerateCodeVC: UIViewController {
     }
     
     func barCodeImageView(){
+        //生成条形码
         let image =  generateBarCodeImage(content: "7928347957wjer",codeType: "CICode128BarcodeGenerator")
-        let imageView = UIImageView(image: image)
-        imageView.frame = CGRectMake(0, 0, 200, 50)
-        imageView.center = CGPoint(x: view.center.x, y: 500)
-        view.addSubview(imageView)
+        //缩放图片大小
+        if let img = image {
+            
+            let resizeImage = resizeImage(image: img, quality: .none, rate: 20)
+            let imageView = UIImageView(image: img)
+            imageView.frame = CGRectMake(0, 0, 200, 50)
+            imageView.center = CGPoint(x: view.center.x, y: 500)
+            view.addSubview(imageView)
+        }
     }
 }
