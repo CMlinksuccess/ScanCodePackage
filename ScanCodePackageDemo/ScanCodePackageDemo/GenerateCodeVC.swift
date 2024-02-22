@@ -49,8 +49,8 @@ class GenerateCodeVC: UIViewController {
         //缩放图片大小
         if let img = image {
             
-            let resizeImage = resizeImage(image: img, quality: .none, rate: 20)
-            let imageView = UIImageView(image: img)
+            let resizeImage = resizeImage(image: img, quality: .none, rate: 2)
+            let imageView = UIImageView(image: resizeImage)
             imageView.frame = CGRectMake(0, 0, 200, 50)
             imageView.center = CGPoint(x: view.center.x, y: 500)
             view.addSubview(imageView)
