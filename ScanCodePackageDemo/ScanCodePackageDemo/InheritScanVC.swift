@@ -16,7 +16,7 @@ class InheritScanVC: ScanBaseVC {
         style.angleW = 10
         style.angleH = 30
         style.angleStyle = .outer
-        style.animationImageView = UIImageView(image: UIImage(named: "scan_gride_img"))
+        style.animationImageView = UIImageView(image: getBundleImage(name: "scan_gride_img"))
         style.animationStyle = .grid
         style.retangleLineColor = .green
         super.viewDidLoad()

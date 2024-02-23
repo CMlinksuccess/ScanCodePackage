@@ -141,3 +141,14 @@ public func systemSetting(){
     guard let setting = URL(string: UIApplication.openSettingsURLString) else { return }
     UIApplication.shared.open(setting)
 }
+
+//读取本地图片
+func getBundleImage(name:String) -> UIImage? {
+    let bundle = Bundle(for: ScanBaseVC.self)
+    if let url = bundle.url(forResource: "scanResource", withExtension: "bundle"){
+        
+        let image = UIImage(named: name, in: Bundle(url: url), compatibleWith: nil)
+        return image
+    }
+    return nil
+}

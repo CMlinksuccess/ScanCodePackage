@@ -50,7 +50,7 @@ class CustomizedScanVC: UIViewController {
         style.backgroundAreaColor = .clear
         style.centerUpOffset = 30
         let imageview = UIImageView()
-        imageview.image = UIImage(named: "scan_blue_img")
+        imageview.image = getBundleImage(name: "scan_blue_img")
         style.animationImageView = imageview
         scanView.scanStyle = style
         
@@ -101,8 +101,8 @@ class CustomizedScanVC: UIViewController {
     
     func addBackBtn(){
         let backBtn = UIButton()
-        backBtn.frame = CGRect(x: 10, y: 44, width: 40, height: 40)
-        backBtn.setImage(UIImage(named: "scan_back"), for: .normal)
+        backBtn.frame = CGRect(x: 20, y: 44, width: 30, height: 30)
+        backBtn.setBackgroundImage(getBundleImage(name: "scan_back"), for: .normal)
         backBtn.addTarget(self, action: #selector(backClick), for: .touchUpInside)
         view.addSubview(backBtn)
     }

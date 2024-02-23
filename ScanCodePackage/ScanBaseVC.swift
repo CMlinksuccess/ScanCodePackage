@@ -70,8 +70,9 @@ class ScanBaseVC: UIViewController {
         if isShowTitle {view.addSubview(scanTitle)}
         //返回按钮
         let backBtn = UIButton()
-        backBtn.frame = CGRect(x: 10, y: 44, width: 40, height: 40)
-        backBtn.setImage(UIImage(named: "scan_back"), for: .normal)
+        backBtn.frame = CGRect(x: 20, y: 44, width: 30, height: 30)
+        //UIImage(named: "scanResource.bundle/scan_back")
+        backBtn.setBackgroundImage(getBundleImage(name: "scan_back"), for: .normal)
         backBtn.addTarget(self, action: #selector(backClick), for: .touchUpInside)
         view.addSubview(backBtn)
     }
@@ -93,10 +94,11 @@ class ScanBaseVC: UIViewController {
         if style.animationImageView == nil {
             let imageview = UIImageView()
             if style.animationStyle == .lineMove {
-                imageview.image = UIImage(named: "scan_blue_img")
+                imageview.image = getBundleImage(name: "scan_blue_img")
+                
 
             }else if style.animationStyle == .grid{
-                imageview.image = UIImage(named: "scan_gride_img")
+                imageview.image = getBundleImage(name: "scan_gride_img")
             }
             style.animationImageView = imageview
         }
@@ -119,7 +121,7 @@ class ScanBaseVC: UIViewController {
     private func createPhotoImageButton(){
         let scanRect = scanView.scanAreaView.getScanAreaRect(backView: view, viewStyle: style)
         photoBtn.frame = CGRect(x: scanRect.origin.x, y: CGRectGetMaxY(scanRect) + 100, width: 40, height: 40)
-        photoBtn.setBackgroundImage(UIImage(named: "photo_img"), for: .normal)
+        photoBtn.setBackgroundImage(getBundleImage(name: "photo_img"), for: .normal)
         photoBtn.addTarget(self, action: #selector(photoImageAction), for: .touchUpInside)
         scanView.addSubview(photoBtn)
     }
@@ -133,8 +135,8 @@ class ScanBaseVC: UIViewController {
         let scanRect = scanView.scanAreaView.getScanAreaRect(backView: view, viewStyle: style)
         flashBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 40)
         flashBtn.center = CGPoint(x: view.center.x, y: CGRectGetMaxY(scanRect) + 70)
-        flashBtn.setBackgroundImage(UIImage(named: "flash_off"), for: .normal)
-        flashBtn.setBackgroundImage(UIImage(named: "flash_on"), for: .selected)
+        flashBtn.setBackgroundImage(getBundleImage(name: "flash_off"), for: .normal)
+        flashBtn.setBackgroundImage(getBundleImage(name: "flash_on"), for: .selected)
         flashBtn.addTarget(self, action: #selector(flashAction(btn:)), for: .touchUpInside)
         scanView.addSubview(flashBtn)
         
@@ -161,7 +163,7 @@ class ScanBaseVC: UIViewController {
     private func createGetCodeButton(){
         let scanRect = scanView.scanAreaView.getScanAreaRect(backView: view, viewStyle: style)
         getCodeBtn.frame = CGRect(x: CGRectGetMaxX(scanRect) - 35, y: CGRectGetMaxY(scanRect) + 100, width: 35, height: 35)
-        getCodeBtn.setBackgroundImage(UIImage(named: "getcode_img"), for: .normal)
+        getCodeBtn.setBackgroundImage(getBundleImage(name: "getcode_img"), for: .normal)
         getCodeBtn.addTarget(self, action: #selector(getCodeAction), for: .touchUpInside)
         scanView.addSubview(getCodeBtn)
     }

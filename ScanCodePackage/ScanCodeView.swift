@@ -201,6 +201,7 @@ class ScanCodeView: UIView {
     
     //播放文件声音
     func playSound(){
+        
         guard let soundPath = Bundle.main.path(forResource: soundFilePath, ofType: nil) else { return }
         guard let soundUrl = NSURL(string: soundPath) else { return }
         var soundID:SystemSoundID = 0
