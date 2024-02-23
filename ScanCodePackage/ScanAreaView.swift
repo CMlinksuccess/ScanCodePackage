@@ -252,7 +252,12 @@ open class ScanAreaView: UIView {
         if loadingView == nil {
             loadingView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             loadingView?.center = CGPoint(x: retangleLeft + retangleSize.width / 2 - 50, y: retangleMinY + retangleSize.height / 2)
-            loadingView?.style = .large
+            if #available(iOS 13, *) {
+                
+                loadingView?.style = .large
+            }else{
+                loadingView?.style = .white
+            }
             loadingView?.color = .white
             addSubview(loadingView!)
             

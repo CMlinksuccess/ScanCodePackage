@@ -1,7 +1,7 @@
 # ScanCodePackage
 扫码、扫描二维码/条形码功能，自定义扫码界面视图，生成二维码/条形码
 
-<img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage1.jpeg"  width=“150” height=“324” alt="效果图1"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage2.jpeg" width=“150” height=“324” alt="效果图2"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage3.jpeg" width=“150” height=“324” alt="效果图3"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage4.jpeg" width=“150” height=“324” alt="效果图4"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage5.jpeg" width=“150” height=“324” alt="效果图5"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage6.jpeg" width=“150” height=“324” alt="效果图6"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage7.jpeg" width=“150” height=“324” alt="效果图7">
+<img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage1.jpeg"  width="150" height="324" alt="效果图1"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage2.jpeg" width="150" height="324" alt="效果图2"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage3.jpeg" width="150" height="324" alt="效果图3"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage4.jpeg" width="150" height="324" alt="效果图4"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage5.jpeg" width="150" height="324" alt="效果图5"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage6.jpeg" width="150" height="324" alt="效果图6"> <img src="https://github.com/CMlinksuccess/ScanCodePackage/blob/main/image/scanImage7.jpeg" width="150" height="324" alt="效果图7">
 
 环境适配
 ```
@@ -19,9 +19,9 @@ pod 'ScanCodePackage'
 $ pod install
 ```
 ## 使用功能
-1、调用扫码功能（扫描二维码/条形码、图片识别二维码/条形码、生成二维码/条形码）
-2、自定义扫码界面UI（继承式自定义修改样式，完全自定义调用封装组件）
-3、生成二维码/条形码
+1. 调用扫码功能（扫描二维码/条形码、图片识别二维码/条形码、生成二维码/条形码）
+2. 自定义扫码界面UI（继承式自定义修改样式，完全自定义调用封装组件）
+3. 生成二维码/条形码
 
 ## 使用方法
 
@@ -106,7 +106,6 @@ extension CustomizedScanVC:ScanCodeViewDelegate, ScanImageActionDelegate{
 ```
 3、生成二维码/条形码
 ```swift
-
 //生成二维码
  let image =  generateQRCodeImage(content: "生成二维码的内容8993847349",size: CGSize(width: 200, height: 200), codeType: "CIQRCodeGenerator",codeColor: .green,bgColor: .white)
 //生成条形码
