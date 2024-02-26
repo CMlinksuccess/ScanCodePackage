@@ -14,14 +14,14 @@ protocol ScanCodeViewDelegate: NSObjectProtocol {
 }
 class ScanCodeView: UIView {
     //扫码结束提示音文件路径
-    var soundFilePath:String?
+    public var soundFilePath:String?
     //是否播放扫码结束提示音, soundFilePath路径有值时有效
-    var isPlaySound:Bool = true
+    public var isPlaySound:Bool = true
     //扫描实时亮度光线值 <-1
-    var brightnessChange:((Double) -> Void)?
+    public var brightnessChange:((Double) -> Void)?
     
     //闪光灯设置
-    var flashModel:AVCaptureDevice.TorchMode = .auto{
+    public var flashModel:AVCaptureDevice.TorchMode = .auto{
         didSet{
             guard let device = captureDevice, device.hasFlash else { return }
             
@@ -37,16 +37,16 @@ class ScanCodeView: UIView {
     }
     
     
-    weak var scanDelegate:ScanCodeViewDelegate?
+    public weak var scanDelegate:ScanCodeViewDelegate?
     
-    var scanAreaView:ScanAreaView = ScanAreaView()
-    var scanAnimation:ScanAnimation = ScanAnimation()
+    public var scanAreaView:ScanAreaView = ScanAreaView()
+    public var scanAnimation:ScanAnimation = ScanAnimation()
     
-    var scanStyle: ScanViewStyle = ScanViewStyle()
+    public var scanStyle: ScanViewStyle = ScanViewStyle()
     
-    lazy var scanViewColor:UIColor = .blue
+    public lazy var scanViewColor:UIColor = .blue
     
-    var metadata: MetaDataType = .allType
+    public var metadata: MetaDataType = .allType
     
     private var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     
@@ -77,7 +77,7 @@ class ScanCodeView: UIView {
         return captureDevice
     }()
     
-    lazy var captureSession = AVCaptureSession()
+    private lazy var captureSession = AVCaptureSession()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -89,8 +89,14 @@ class ScanCodeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func startScan() {
+    public func startScan() {
 
+        authorizeCameraStatus{ auth in
+            if !auth { //未认证去系统设置
+                systemSetting()
+                return
+            }
+        }
         //0.启动相机和视图
         createLayer()
         //1、打开扫描,直接打开会出现卡顿现象，放入视图将要出现时启动
@@ -104,13 +110,7 @@ class ScanCodeView: UIView {
     }
     
     //启动相机和视图
-    func createLayer() {
-        authorizeCameraStatus{ auth in
-            if !auth { //未认证去系统设置
-                systemSetting()
-                return
-            }
-        }
+    private func createLayer() {
 
         backgroundColor = .black
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -121,7 +121,7 @@ class ScanCodeView: UIView {
     }
 
     //开启扫描
-    func startSession() {
+    public func startSession() {
         scanAreaView.stopLoading()
         let dispatchQueue = DispatchQueue(label: "scan_start_queue",qos: .userInteractive)
         dispatchQueue.async {
@@ -129,7 +129,7 @@ class ScanCodeView: UIView {
         }
     }
     //停止扫描
-    func stopSession() {
+    public func stopSession() {
         ScanAnimation.shared.stopAnimation()
         let dispatchQueue = DispatchQueue(label: "scan_stop_queue",qos: .userInteractive)
         dispatchQueue.async {
@@ -148,7 +148,7 @@ class ScanCodeView: UIView {
         scanAreaView.addGestureRecognizer(tap)
     }
     //双击事件
-    @objc func tapGuesture(){
+    @objc private func tapGuesture(){
         
         guard let device = captureDevice else { return }
         do{

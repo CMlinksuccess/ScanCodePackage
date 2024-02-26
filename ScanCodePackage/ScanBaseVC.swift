@@ -19,22 +19,24 @@ import UIKit
 
 class ScanBaseVC: UIViewController {
     //配置类参数
-    var scanView: ScanCodeView = ScanCodeView()
-    var style: ScanViewStyle = ScanViewStyle()
-    var scanImageAction: ScanImageAction  = ScanImageAction()
+    public var scanView: ScanCodeView = ScanCodeView()
+    public var style: ScanViewStyle = ScanViewStyle()
+    public var scanImageAction: ScanImageAction  = ScanImageAction()
     
-    weak var delegate:ScanBaseVCDelegate?
+    public weak var delegate:ScanBaseVCDelegate?
     
     //相册选择按钮
-    var photoBtn: UIButton = UIButton()
+    public var photoBtn: UIButton = UIButton()
     //电筒按钮
-    var flashBtn: UIButton = UIButton()
+    public var flashBtn: UIButton = UIButton()
     //生成二维码/条形码按钮
-    var getCodeBtn: UIButton = UIButton()
+    public var getCodeBtn: UIButton = UIButton()
+    //返回按钮
+    public let backBtn: UIButton = UIButton()
     //是否显示标题
-    var isShowTitle:Bool = true
+    public var isShowTitle:Bool = true
     
-    lazy var scanTitle: UILabel = {
+    public lazy var scanTitle: UILabel = {
     
         let titleLab = UILabel()
         titleLab.frame = CGRect(x: 0, y: 44, width: view.frame.width, height: 40)
@@ -53,7 +55,7 @@ class ScanBaseVC: UIViewController {
     private var codeType:String = "CIQRCodeGenerator"
     private var codeColor:UIColor = .black
     private var bgColor:UIColor = .white
-    func setGenerateCodeConfig(content:String, size:CGSize = CGSize(width: 50, height: 50),codeType:String = "CIQRCodeGenerator",codeColor:UIColor = .black, bgColor:UIColor = .white) {
+    public func setGenerateCodeConfig(content:String, size:CGSize = CGSize(width: 50, height: 50),codeType:String = "CIQRCodeGenerator",codeColor:UIColor = .black, bgColor:UIColor = .white) {
         self.content = content
         self.size = size
         self.codeType = codeType
@@ -68,15 +70,18 @@ class ScanBaseVC: UIViewController {
         createScanView()
         //是否添加标题
         if isShowTitle {view.addSubview(scanTitle)}
+        //添加返回按钮
+        addBackBtn()
+    }
+    public func addBackBtn(){
         //返回按钮
-        let backBtn = UIButton()
         backBtn.frame = CGRect(x: 20, y: 44, width: 30, height: 30)
         //UIImage(named: "scanResource.bundle/scan_back")
         backBtn.setBackgroundImage(getBundleImage(name: "scan_back"), for: .normal)
         backBtn.addTarget(self, action: #selector(backClick), for: .touchUpInside)
         view.addSubview(backBtn)
     }
-    @objc func backClick(){
+    @objc private func backClick(){
         self.dismiss(animated: true)
     }
     

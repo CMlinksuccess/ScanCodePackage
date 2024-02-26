@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ScanAnimation: NSObject {
+ class ScanAnimation: NSObject {
     
     static let shared:ScanAnimation = {
         
@@ -17,18 +17,18 @@ class ScanAnimation: NSObject {
         return instance
     }()
     
-    lazy var animationImageView = UIImageView()
+    private lazy var animationImageView = UIImageView()
     
-    var displayLink: CADisplayLink?
+    private var displayLink: CADisplayLink?
     
-    var tempFrame: CGRect?
+    private var tempFrame: CGRect?
     
-    var contentHeight: CGFloat?
+    private var contentHeight: CGFloat?
     
     private var animationStyle: ScanAnimationStyle = .lineMove
     
     //通用参数
-    func scanAnimation(_ rect:CGRect, _ parentView:UIView, imageView:UIImageView?, style: ScanAnimationStyle){
+    public func scanAnimation(_ rect:CGRect, _ parentView:UIView, imageView:UIImageView?, style: ScanAnimationStyle){
         guard let imgView = imageView else { return }
         animationStyle = style
         
@@ -56,7 +56,7 @@ class ScanAnimation: NSObject {
         }
     }
     
-    func setupDisplayLink() {
+    private func setupDisplayLink() {
         displayLink = CADisplayLink(target: self, selector: #selector(animation))
         
         displayLink?.add(to: .current, forMode: .common)
@@ -64,7 +64,7 @@ class ScanAnimation: NSObject {
         displayLink?.isPaused = true
     }
     
-    @objc func animation(){
+    @objc private func animation(){
         if animationImageView.frame.maxY > contentHeight! {
             animationImageView.frame = tempFrame ?? .zero
         }
@@ -80,11 +80,11 @@ class ScanAnimation: NSObject {
         animationImageView.transform = CGAffineTransform(translationX: 0, y: rate).concatenating(animationImageView.transform)
     }
     
-    func startAnimation() {
+    public func startAnimation() {
         displayLink?.isPaused = false
     }
     
-    func stopAnimation() {
+    public func stopAnimation() {
         displayLink?.invalidate()
         displayLink = nil
     }

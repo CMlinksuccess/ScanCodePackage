@@ -18,12 +18,12 @@ protocol ScanImageActionDelegate:NSObjectProtocol {
 class ScanImageAction: NSObject{
     
     
-    weak var delegate: ScanImageActionDelegate?
+    public weak var delegate: ScanImageActionDelegate?
     
-    let pickControl = UIImagePickerController()
+    private let pickControl = UIImagePickerController()
     
     //选择相册图片并识别二维码
-    func selectPickImage(vc:UIViewController) {
+    public func selectPickImage(vc:UIViewController) {
         authorizePhotoStatus { auth in
             if !auth { //未认证去系统设置
                 systemSetting()
@@ -36,7 +36,7 @@ class ScanImageAction: NSObject{
         }
     }
     //识别图片中的二维码,条形码无法识别
-    func scanQRCodeImage(qrImage:UIImage) -> [ScanQRResult]{
+    public func scanQRCodeImage(qrImage:UIImage) -> [ScanQRResult]{
         guard let cgImage = qrImage.cgImage else { return []}
         let detector = CIDetector(ofType:CIDetectorTypeQRCode, context: nil,options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!
         let img = CIImage(cgImage: cgImage)
@@ -50,7 +50,7 @@ class ScanImageAction: NSObject{
         }
     }
     //识别图片中的二维码/条形码
-    func parseBarCode(img:UIImage, complete:@escaping ((String?,CIBarcodeDescriptor?,String?)->Void)) {
+    public func parseBarCode(img:UIImage, complete:@escaping ((String?,CIBarcodeDescriptor?,String?)->Void)) {
         guard let cgimg = img.cgImage else { return complete(nil,nil,nil)}
         
         let request = VNDetectBarcodesRequest { request, error in
@@ -60,14 +60,6 @@ class ScanImageAction: NSObject{
                 
                 if let barcode = result as? VNBarcodeObservation, let value = barcode.payloadStringValue {
 
-//                    if barcode.symbology == .qr  ||
-//                       barcode.symbology == .aztec ||
-//                       barcode.symbology == .dataMatrix
-//                    { //二维码
-//                        complete(value,barcode.barcodeDescriptor,nil)
-//                    }else{ //条形码
-//                        complete(value,barcode.barcodeDescriptor,barcode.symbology.rawValue)
-//                    }
                     complete(value,barcode.barcodeDescriptor,barcode.symbology.rawValue)
                 }
             }
@@ -91,25 +83,18 @@ extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControll
         let editedImage = info[.editedImage] as? UIImage
         let originalImage = info[.originalImage] as? UIImage
         guard let image = editedImage ?? originalImage else { return }
-//        let resultArr = scanQRCodeImage(qrImage: image)
-//
-//        if let del = delegate {
-//            del.scanImageDidFinished(result: resultArr.first)
-//        }
-//        print("图片识别内容：\(resultArr)")
+
         parseBarCode(img: image) { val, info, symbology in
             if let del = self.delegate {
                 let result = ScanResult(content: val,descriptor: info,codeType: symbology)
                 del.scanImageDidFinished(result: result)
             }
-//            print("图片识别内容2：\(String(describing: val)),\(String(describing: info)),\(String(describing: symbology))")
-            
         }
     }
 }
 
 ///生成二维码图片
-    func generateQRCodeImage(content:String, size:CGSize = CGSize(width: 50, height: 50),codeType:String = "CIQRCodeGenerator",codeColor:UIColor = .black, bgColor:UIColor = .white) -> UIImage?{
+    public func generateQRCodeImage(content:String, size:CGSize = CGSize(width: 50, height: 50),codeType:String = "CIQRCodeGenerator",codeColor:UIColor = .black, bgColor:UIColor = .white) -> UIImage?{
         
         let contentData = content.data(using: .utf8)
         /***
@@ -146,7 +131,7 @@ extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControll
         return codeImage
     }
 ///生成条形码图片
-    func generateBarCodeImage(content:String, codeType:String = "CICode128BarcodeGenerator") -> UIImage?{
+    public func generateBarCodeImage(content:String, codeType:String = "CICode128BarcodeGenerator") -> UIImage?{
         
         let contentData = content.data(using: .utf8)
         /***
@@ -168,7 +153,7 @@ extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControll
     }
 
 //图片缩放
-    func resizeImage(image:UIImage, quality:CGInterpolationQuality, rate: CGFloat) -> UIImage? {
+    public func resizeImage(image:UIImage, quality:CGInterpolationQuality, rate: CGFloat) -> UIImage? {
         var resized:UIImage?
         let width = image.size.width * rate
         let height = image.size.height * rate

@@ -8,7 +8,7 @@
 import UIKit
 
 //扫码视图参数配置
-struct ScanViewStyle {
+public struct ScanViewStyle {
     //扫码区域类型，默认为矩形框内识别
     var scanAreaStyle:ScanAreaStyle = .angle
     //是否显示绘制矩形框。默认true
@@ -45,15 +45,15 @@ struct ScanViewStyle {
 
 open class ScanAreaView: UIView {
     //创建扫码区域默认配置
-    var viewStyle = ScanViewStyle()
+    public var viewStyle = ScanViewStyle()
     //扫码区域坐标
-    var scanAreaRect: CGRect = .zero
+    public var scanAreaRect: CGRect = .zero
     //加载视图
-    var loadingView: UIActivityIndicatorView?
+    public var loadingView: UIActivityIndicatorView?
     //加载label
-    var loadingLab: UILabel?
+    public var loadingLab: UILabel?
     //提示文本lab
-    lazy var tipLabel: UILabel = {
+    public lazy var tipLabel: UILabel = {
         let tipLab = UILabel()
         tipLab.text = "对准二维码区域扫描，识别信息"
         tipLab.textColor = .white
@@ -80,13 +80,13 @@ open class ScanAreaView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addTipLabel(){
+   private func addTipLabel(){
 
         let maxY = (viewStyle.scanAreaStyle == .screen) ? bounds.height * 3.2/5.0 + 15 : scanAreaRect.maxY + 15
         tipLabel.frame = CGRect(x: 0, y: maxY, width: frame.width, height: 25)
     }
     
-    func addScanAnimation(){
+    private func addScanAnimation(){
         
         if viewStyle.animationStyle == .none { return }
         
@@ -117,7 +117,7 @@ open class ScanAreaView: UIView {
         }
     }
     
-    func drawScanArea(){
+    private func drawScanArea(){
         
         let retangleLeft = viewStyle.retangleOffsetX
         var retangleSize = CGSize(width: frame.size.width - retangleLeft * 2.0, height: frame.size.width - retangleLeft * 2.0)
@@ -214,7 +214,7 @@ open class ScanAreaView: UIView {
         addTipLabel()
     }
     //获取扫码识别区域
-    func getScanAreaRect(backView:UIView, viewStyle:ScanViewStyle) -> CGRect {
+    public func getScanAreaRect(backView:UIView, viewStyle:ScanViewStyle) -> CGRect {
         
         let retangleLeft = viewStyle.retangleOffsetX
         var retangleSize = CGSize(width: frame.size.width - retangleLeft * 2.0, height: frame.size.width - retangleLeft * 2.0)
@@ -232,7 +232,7 @@ open class ScanAreaView: UIView {
         return scanAreaRect
     }
     
-    func getRetangSize() -> CGSize {
+    private func getRetangSize() -> CGSize {
         let retangleLeft = viewStyle.retangleOffsetX
         var retangleSize = CGSize(width: frame.size.width - retangleLeft * 2, height: frame.size.width - retangleLeft * 2)
         let w = retangleSize.width
@@ -242,7 +242,7 @@ open class ScanAreaView: UIView {
         return retangleSize
     }
     //添加加载loading
-    func startLoading(message:String) {
+    public func startLoading(message:String) {
         let retangleLeft = viewStyle.retangleOffsetX
         let retangleSize = getRetangSize()
         
@@ -271,7 +271,7 @@ open class ScanAreaView: UIView {
         loadingView?.startAnimating()
     }
     
-    func stopLoading(){
+    public func stopLoading(){
         if loadingView != nil {
             loadingView?.stopAnimating()
             loadingView?.removeFromSuperview()

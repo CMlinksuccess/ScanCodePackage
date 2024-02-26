@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "ScanCodePackage"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.swift_version  = "5.0"
   spec.summary      = "ScanCodePackage 扫码、扫描二维码/条形码功能，自定义扫码界面视图，生成二维码/条形码"
   spec.description  = <<-DESC
@@ -30,7 +30,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   
   spec.resource  = 'ScanCodePackage/scanResource.bundle'
-  spec.source_files  = 'ScanCodePackage/*.{swift,bundle}'
+  spec.source_files  = 'ScanCodePackage/*.{swift,h,bundle}'
   spec.frameworks = 'UIKit'
   
 end

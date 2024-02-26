@@ -10,27 +10,27 @@ import AVFoundation
 import Photos
 
 //MARK: 扫码区域类型
-enum ScanAreaStyle {
+public enum ScanAreaStyle {
     case screen //传入视图100%扫描
     case angle  //矩形框区域
 }
 
 //MARK: 扫码区域动画类型
-enum ScanAnimationStyle {
+public enum ScanAnimationStyle {
     case lineMove  //线条上下移动
     case grid      //网格扫描
     case lineStill //线条停放在中间位置
     case none      //无动画效果
 }
 //MARK: 扫码区域四角位置类型
-enum ScanFrameAngleStyle {
+public enum ScanFrameAngleStyle {
     case inner //内嵌，一般无矩形框显示效果
     case outer //矩形框角上外嵌
     case on    //矩形框角上覆盖
 }
 
 //MARK: 扫描码类型
-enum MetaDataType {
+public enum MetaDataType {
     case allType //所有类型
     case qrType  //二维码类型
     case barType //条形码类型
@@ -143,7 +143,7 @@ public func systemSetting(){
 }
 
 //读取本地图片
-func getBundleImage(name:String) -> UIImage? {
+public func getBundleImage(name:String) -> UIImage? {
     let bundle = Bundle(for: ScanBaseVC.self)
     if let url = bundle.url(forResource: "scanResource", withExtension: "bundle"){
         
