@@ -12,7 +12,7 @@ ios 11.0+
 ## CocoaPods使用
  在Podfile文件中添加：
 ```
-pod 'ScanCodePackage'
+pod 'ScanCodePackage' ,:git =>"git@github.com:CMlinksuccess/ScanCodePackage.git"
 ```
 然后，执行下面命令：
 ```
