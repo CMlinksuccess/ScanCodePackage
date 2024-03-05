@@ -44,7 +44,4 @@ extension InheritScanVC:ScanBaseVCDelegate {
     func scanGenerateCodeImage(image: UIImage?) {
         print("生成二维码图片")
     }
-    
-    
-
 }

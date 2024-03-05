@@ -13,16 +13,16 @@
 		1D1091862B5A6D28006A6D99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1091842B5A6D28006A6D99 /* Main.storyboard */; };
 		1D1091882B5A6D29006A6D99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D1091872B5A6D29006A6D99 /* Assets.xcassets */; };
 		1D10918B2B5A6D29006A6D99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1091892B5A6D29006A6D99 /* LaunchScreen.storyboard */; };
-		1D6FFA4C2B8603790071F089 /* ScanAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFA452B8603790071F089 /* ScanAnimation.swift */; };
-		1D6FFA4D2B8603790071F089 /* ScanCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFA462B8603790071F089 /* ScanCommon.swift */; };
-		1D6FFA4E2B8603790071F089 /* scanResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1D6FFA472B8603790071F089 /* scanResource.bundle */; };
-		1D6FFA4F2B8603790071F089 /* ScanImageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFA482B8603790071F089 /* ScanImageAction.swift */; };
-		1D6FFA502B8603790071F089 /* ScanAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFA492B8603790071F089 /* ScanAreaView.swift */; };
-		1D6FFA512B8603790071F089 /* ScanBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFA4A2B8603790071F089 /* ScanBaseVC.swift */; };
-		1D6FFA522B8603790071F089 /* ScanCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFA4B2B8603790071F089 /* ScanCodeView.swift */; };
 		1D8E404E2B6C930B00A9522C /* CustomizedScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8E404D2B6C930B00A9522C /* CustomizedScanVC.swift */; };
 		1D8E40502B6CC6E500A9522C /* InheritScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8E404F2B6CC6E500A9522C /* InheritScanVC.swift */; };
 		1D9D93A22B6100F500E3864C /* GenerateCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9D93A12B6100F500E3864C /* GenerateCodeVC.swift */; };
+		1DD53B712B96CA4200B69595 /* ScanAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD53B6A2B96CA4200B69595 /* ScanAnimation.swift */; };
+		1DD53B722B96CA4200B69595 /* ScanCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD53B6B2B96CA4200B69595 /* ScanCommon.swift */; };
+		1DD53B732B96CA4200B69595 /* scanResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DD53B6C2B96CA4200B69595 /* scanResource.bundle */; };
+		1DD53B742B96CA4200B69595 /* ScanImageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD53B6D2B96CA4200B69595 /* ScanImageAction.swift */; };
+		1DD53B752B96CA4200B69595 /* ScanAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD53B6E2B96CA4200B69595 /* ScanAreaView.swift */; };
+		1DD53B762B96CA4200B69595 /* ScanBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD53B6F2B96CA4200B69595 /* ScanBaseVC.swift */; };
+		1DD53B772B96CA4200B69595 /* ScanCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD53B702B96CA4200B69595 /* ScanCodeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,16 +34,16 @@
 		1D1091872B5A6D29006A6D99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D10918A2B5A6D29006A6D99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D10918C2B5A6D29006A6D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D6FFA452B8603790071F089 /* ScanAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanAnimation.swift; sourceTree = "<group>"; };
-		1D6FFA462B8603790071F089 /* ScanCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanCommon.swift; sourceTree = "<group>"; };
-		1D6FFA472B8603790071F089 /* scanResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = scanResource.bundle; sourceTree = "<group>"; };
-		1D6FFA482B8603790071F089 /* ScanImageAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanImageAction.swift; sourceTree = "<group>"; };
-		1D6FFA492B8603790071F089 /* ScanAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanAreaView.swift; sourceTree = "<group>"; };
-		1D6FFA4A2B8603790071F089 /* ScanBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanBaseVC.swift; sourceTree = "<group>"; };
-		1D6FFA4B2B8603790071F089 /* ScanCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanCodeView.swift; sourceTree = "<group>"; };
 		1D8E404D2B6C930B00A9522C /* CustomizedScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedScanVC.swift; sourceTree = "<group>"; };
 		1D8E404F2B6CC6E500A9522C /* InheritScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InheritScanVC.swift; sourceTree = "<group>"; };
 		1D9D93A12B6100F500E3864C /* GenerateCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCodeVC.swift; sourceTree = "<group>"; };
+		1DD53B6A2B96CA4200B69595 /* ScanAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanAnimation.swift; sourceTree = "<group>"; };
+		1DD53B6B2B96CA4200B69595 /* ScanCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanCommon.swift; sourceTree = "<group>"; };
+		1DD53B6C2B96CA4200B69595 /* scanResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = scanResource.bundle; sourceTree = "<group>"; };
+		1DD53B6D2B96CA4200B69595 /* ScanImageAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanImageAction.swift; sourceTree = "<group>"; };
+		1DD53B6E2B96CA4200B69595 /* ScanAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanAreaView.swift; sourceTree = "<group>"; };
+		1DD53B6F2B96CA4200B69595 /* ScanBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanBaseVC.swift; sourceTree = "<group>"; };
+		1DD53B702B96CA4200B69595 /* ScanCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanCodeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 		1D1091722B5A6D28006A6D99 = {
 			isa = PBXGroup;
 			children = (
-				1D6FFA442B8603790071F089 /* ScanCodePackage */,
+				1DD53B692B96CA4200B69595 /* ScanCodePackage */,
 				1D10917D2B5A6D28006A6D99 /* ScanCodePackageDemo */,
 				1D10917C2B5A6D28006A6D99 /* Products */,
 			);
@@ -91,19 +91,19 @@
 			path = ScanCodePackageDemo;
 			sourceTree = "<group>";
 		};
-		1D6FFA442B8603790071F089 /* ScanCodePackage */ = {
+		1DD53B692B96CA4200B69595 /* ScanCodePackage */ = {
 			isa = PBXGroup;
 			children = (
-				1D6FFA472B8603790071F089 /* scanResource.bundle */,
-				1D6FFA452B8603790071F089 /* ScanAnimation.swift */,
-				1D6FFA462B8603790071F089 /* ScanCommon.swift */,
-				1D6FFA482B8603790071F089 /* ScanImageAction.swift */,
-				1D6FFA492B8603790071F089 /* ScanAreaView.swift */,
-				1D6FFA4A2B8603790071F089 /* ScanBaseVC.swift */,
-				1D6FFA4B2B8603790071F089 /* ScanCodeView.swift */,
+				1DD53B6A2B96CA4200B69595 /* ScanAnimation.swift */,
+				1DD53B6B2B96CA4200B69595 /* ScanCommon.swift */,
+				1DD53B6C2B96CA4200B69595 /* scanResource.bundle */,
+				1DD53B6D2B96CA4200B69595 /* ScanImageAction.swift */,
+				1DD53B6E2B96CA4200B69595 /* ScanAreaView.swift */,
+				1DD53B6F2B96CA4200B69595 /* ScanBaseVC.swift */,
+				1DD53B702B96CA4200B69595 /* ScanCodeView.swift */,
 			);
 			name = ScanCodePackage;
-			path = ../ScanCodePackage;
+			path = ../Sources/ScanCodePackage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,7 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D6FFA4E2B8603790071F089 /* scanResource.bundle in Resources */,
+				1DD53B732B96CA4200B69595 /* scanResource.bundle in Resources */,
 				1D10918B2B5A6D29006A6D99 /* LaunchScreen.storyboard in Resources */,
 				1D1091882B5A6D29006A6D99 /* Assets.xcassets in Resources */,
 				1D1091862B5A6D28006A6D99 /* Main.storyboard in Resources */,
@@ -179,16 +179,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D8E404E2B6C930B00A9522C /* CustomizedScanVC.swift in Sources */,
-				1D6FFA4D2B8603790071F089 /* ScanCommon.swift in Sources */,
+				1DD53B722B96CA4200B69595 /* ScanCommon.swift in Sources */,
 				1D8E40502B6CC6E500A9522C /* InheritScanVC.swift in Sources */,
-				1D6FFA4F2B8603790071F089 /* ScanImageAction.swift in Sources */,
-				1D6FFA522B8603790071F089 /* ScanCodeView.swift in Sources */,
-				1D6FFA4C2B8603790071F089 /* ScanAnimation.swift in Sources */,
+				1DD53B742B96CA4200B69595 /* ScanImageAction.swift in Sources */,
+				1DD53B772B96CA4200B69595 /* ScanCodeView.swift in Sources */,
+				1DD53B712B96CA4200B69595 /* ScanAnimation.swift in Sources */,
 				1D1091832B5A6D28006A6D99 /* ViewController.swift in Sources */,
 				1D10917F2B5A6D28006A6D99 /* AppDelegate.swift in Sources */,
 				1D9D93A22B6100F500E3864C /* GenerateCodeVC.swift in Sources */,
-				1D6FFA512B8603790071F089 /* ScanBaseVC.swift in Sources */,
-				1D6FFA502B8603790071F089 /* ScanAreaView.swift in Sources */,
+				1DD53B762B96CA4200B69595 /* ScanBaseVC.swift in Sources */,
+				1DD53B752B96CA4200B69595 /* ScanAreaView.swift in Sources */,
 				1D1091812B5A6D28006A6D99 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

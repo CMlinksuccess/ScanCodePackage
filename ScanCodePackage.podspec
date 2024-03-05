@@ -29,8 +29,8 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, '11.0'
   spec.requires_arc = true
   
-  spec.resource  = 'ScanCodePackage/scanResource.bundle'
-  spec.source_files  = 'ScanCodePackage/*.{swift,h,bundle}'
+  spec.resource  = 'Sources/ScanCodePackage/scanResource.bundle'
+  spec.source_files  = 'Sources/ScanCodePackage/*.{swift,h,bundle}'
   spec.frameworks = 'UIKit'
   
 end
