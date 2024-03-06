@@ -9,6 +9,14 @@ swift 5.0+
 ios 11.0+
 ```
 
+## Swift Package Manager
+请将以下添加到Package.swift的依赖项值中：
+```
+dependencies: [
+    .package(url: "https://github.com/CMlinksuccess/ScanCodePackage.git", .upToNextMajor(from: "1.0.0"))
+]
+```
+
 ## CocoaPods使用
  在Podfile文件中添加：
 ```
