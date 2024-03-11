@@ -13,7 +13,7 @@ ios 11.0+
 请将以下添加到Package.swift的依赖项值中：
 ```
 dependencies: [
-    .package(url: "https://github.com/CMlinksuccess/ScanCodePackage.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/CMlinksuccess/ScanCodePackage.git", from: "1.0.0")
 ]
 ```
 
