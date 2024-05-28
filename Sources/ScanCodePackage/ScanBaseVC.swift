@@ -10,9 +10,8 @@ import UIKit
  protocol ScanBaseVCDelegate:NSObjectProtocol{
     
     //扫码完成的回调
-    func scanCodeBaseDidFinished(result:String?,codeType:String)
-    //识码结果回调
-    func scanImageBaseDidFinished(result:ScanResult?)
+    func scanCodeBaseDidFinished(result:ScanResult?)
+
     //生成二维码图片结果回调
     func scanGenerateCodeImage(image:UIImage?)
 }
@@ -109,6 +108,7 @@ class ScanBaseVC: UIViewController {
         }
         scanView.frame = view.bounds
         scanView.scanStyle = style
+        scanView.scanDelegate = self
         //声音文件
         scanView.soundFilePath = "noticeMusic.caf"
         //开启扫描
@@ -179,20 +179,23 @@ class ScanBaseVC: UIViewController {
             let image = generateQRCodeImage(content: con, size: size, codeColor: codeColor, bgColor: bgColor)
             del.scanGenerateCodeImage(image: image)
         }
+        
     }
 }
 
 extension ScanBaseVC: ScanImageActionDelegate,ScanCodeViewDelegate {
-    func scanCodeDidFinished(result: String?, codeType: String) {
+    func scanCodeDidFinished(result: ScanResult?) {
         //扫描二维码结果
         if let del = delegate {
-            del.scanCodeBaseDidFinished(result: result, codeType: codeType)
+            self.dismiss(animated: true)
+            del.scanCodeBaseDidFinished(result: result)
         }
     }
     func scanImageDidFinished(result: ScanResult?) {
         //图片扫码结果
         if let del = delegate {
-            del.scanImageBaseDidFinished(result: result)
+            self.dismiss(animated: true)
+            del.scanCodeBaseDidFinished(result: result)
         }
     }
 }

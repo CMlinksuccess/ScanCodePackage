@@ -10,7 +10,7 @@ import AVFoundation
 
 protocol ScanCodeViewDelegate: NSObjectProtocol {
     //扫码完成的回调
-    func scanCodeDidFinished(result:String?,codeType:String)
+    func scanCodeDidFinished(result:ScanResult?)
 }
 class ScanCodeView: UIView {
     //扫码结束提示音文件路径
@@ -122,7 +122,7 @@ class ScanCodeView: UIView {
 
     //开启扫描
     public func startSession() {
-        scanAreaView.stopLoading()
+        ScanAnimation.shared.startAnimation()
         let dispatchQueue = DispatchQueue(label: "scan_start_queue",qos: .userInteractive)
         dispatchQueue.async {
             self.captureSession.startRunning()
@@ -230,7 +230,8 @@ extension ScanCodeView: AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureMe
         
         guard let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject else { return }
         if let del = scanDelegate {
-            del.scanCodeDidFinished(result: object.stringValue,codeType: object.type.rawValue)
+            let result = ScanResult(content: object.stringValue,descriptor: object.descriptor,codeType: object.type.rawValue)
+            del.scanCodeDidFinished(result: result)
         }
     }
 }

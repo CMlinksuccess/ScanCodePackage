@@ -57,6 +57,7 @@ import UIKit
     }
     
     private func setupDisplayLink() {
+        if displayLink != nil { return }
         displayLink = CADisplayLink(target: self, selector: #selector(animation))
         
         displayLink?.add(to: .current, forMode: .common)
@@ -81,6 +82,9 @@ import UIKit
     }
     
     public func startAnimation() {
+        if displayLink == nil {
+            setupDisplayLink()
+        }
         displayLink?.isPaused = false
     }
     

@@ -10,7 +10,8 @@ import UIKit
 class ViewController: UIViewController {
     
     let tableView = UITableView()
-    
+    var scanvc = ScanBaseVC()
+
     let cellID = "tableViewCell"
     let list = ["默认样式","全屏样式","继承修改自定义","完全自定义样式","生成二维码/条形码"]
     override func viewDidLoad() {
@@ -60,16 +61,19 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
         
         switch indexPath.row {
         case 0://默认样式
-            let scanvc = ScanBaseVC()
             scanvc.modalPresentationStyle = .fullScreen
             scanvc.setGenerateCodeConfig(content: "这是生成二维码的内容",size: CGSize(width: 100, height: 100))
             scanvc.delegate = self
+            //自定义按钮事件（所有按钮均可覆盖部分/全部设置）
+            scanvc.getCodeBtn.addTarget(self, action: #selector(getCodeClick), for: .touchUpInside)
             self.present(scanvc, animated: true)
         case 1://全屏样式
-            let scanvc = ScanBaseVC()
+            scanvc = ScanBaseVC()
             scanvc.modalPresentationStyle = .fullScreen
             scanvc.style.scanAreaStyle = .screen
             scanvc.setGenerateCodeConfig(content: "这是生成二维码的内容",size: CGSize(width: 100, height: 100))
+            //自定义按钮事件（所有按钮均可覆盖部分/全部设置）
+            scanvc.getCodeBtn.addTarget(self, action: #selector(getCodeClick), for: .touchUpInside)
             scanvc.delegate = self
             //scanvc.getCodeBtn.isHidden = true //可隐藏按钮
             self.present(scanvc, animated: true)
@@ -88,16 +92,18 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
         default:break
         }
     }
+    
+    @objc func getCodeClick() {
+        let codevc = GenerateCodeVC()
+        codevc.modalPresentationStyle = .fullScreen
+        scanvc.present(codevc, animated: true)
+    }
 }
 
-
+//这里是默认模式和全屏模式的回调
 extension ViewController: ScanBaseVCDelegate {
-    func scanCodeBaseDidFinished(result: String?, codeType: String) {
+    func scanCodeBaseDidFinished(result: ScanResult?) {
         print("扫码完成的结果内容\(String(describing: result))")
-    }
-    
-    func scanImageBaseDidFinished(result: ScanResult?) {
-        print("识别图片完成的结果内容\(String(describing: result))")
     }
 
     func scanGenerateCodeImage(image: UIImage?) {

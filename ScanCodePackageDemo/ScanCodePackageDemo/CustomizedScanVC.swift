@@ -90,6 +90,7 @@ class CustomizedScanVC: UIViewController {
         btn2.setTitle("自定义按钮2", for: .normal)
         btn2.setTitleColor(.yellow, for: .normal)
         btn2.frame = CGRect(x: (scanView.frame.width - 150)/2.0, y: CGRectGetMaxY(areaRect) + 60, width: 150, height: 40)
+        btn2.addTarget(self, action: #selector(getCodeClick), for: .touchUpInside)
         scanView.addSubview(btn2)
     }
     
@@ -97,6 +98,11 @@ class CustomizedScanVC: UIViewController {
         scanImageAction.selectPickImage(vc: self)
         scanImageAction.delegate = self
 
+    }
+    @objc func getCodeClick() {
+        let codevc = GenerateCodeVC()
+        codevc.modalPresentationStyle = .fullScreen
+        self.present(codevc, animated: true)
     }
     
     func addBackBtn(){
@@ -113,11 +119,13 @@ class CustomizedScanVC: UIViewController {
 }
 
 extension CustomizedScanVC:ScanCodeViewDelegate, ScanImageActionDelegate{
-    func scanCodeDidFinished(result: String?, codeType: String) {
+    func scanCodeDidFinished(result: ScanResult?) {
+        dismiss(animated: true)
         print("扫码结果回调")
     }
-    
+
     func scanImageDidFinished(result: ScanResult?) {
+        dismiss(animated: true)
         print("图片码识别结果回调")
     }
 }

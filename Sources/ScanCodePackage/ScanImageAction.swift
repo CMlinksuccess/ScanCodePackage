@@ -77,19 +77,27 @@ class ScanImageAction: NSObject{
 extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     //选中相册图片回调
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         picker.dismiss(animated: true)
         
         let editedImage = info[.editedImage] as? UIImage
         let originalImage = info[.originalImage] as? UIImage
         guard let image = editedImage ?? originalImage else { return }
 
-        parseBarCode(img: image) { val, info, symbology in
-            if let del = self.delegate {
-                let result = ScanResult(content: val,descriptor: info,codeType: symbology)
-                del.scanImageDidFinished(result: result)
+        //子线程识别图片
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.parseBarCode(img: image) { val, info, symbology in
+                //返回主线程
+                DispatchQueue.main.async {
+                    if let del = self.delegate {
+                        let result = ScanResult(content: val,descriptor: info,codeType: symbology)
+                        del.scanImageDidFinished(result: result)
+                    }
+                }
             }
         }
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
 }
 
