@@ -16,7 +16,7 @@
 		1D8E404E2B6C930B00A9522C /* CustomizedScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8E404D2B6C930B00A9522C /* CustomizedScanVC.swift */; };
 		1D8E40502B6CC6E500A9522C /* InheritScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8E404F2B6CC6E500A9522C /* InheritScanVC.swift */; };
 		1D9D93A22B6100F500E3864C /* GenerateCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9D93A12B6100F500E3864C /* GenerateCodeVC.swift */; };
-		1DB778F12C05D1B100B3A5AF /* ShowImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB778F02C05D1B100B3A5AF /* ShowImageVC.swift */; };
+		1DB778F12C05D1B100B3A5AF /* ShowDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB778F02C05D1B100B3A5AF /* ShowDetailVC.swift */; };
 		1DD53B712B96CA4200B69595 /* ScanAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD53B6A2B96CA4200B69595 /* ScanAnimation.swift */; };
 		1DD53B722B96CA4200B69595 /* ScanCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD53B6B2B96CA4200B69595 /* ScanCommon.swift */; };
 		1DD53B732B96CA4200B69595 /* scanResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DD53B6C2B96CA4200B69595 /* scanResource.bundle */; };
@@ -38,7 +38,7 @@
 		1D8E404D2B6C930B00A9522C /* CustomizedScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedScanVC.swift; sourceTree = "<group>"; };
 		1D8E404F2B6CC6E500A9522C /* InheritScanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InheritScanVC.swift; sourceTree = "<group>"; };
 		1D9D93A12B6100F500E3864C /* GenerateCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCodeVC.swift; sourceTree = "<group>"; };
-		1DB778F02C05D1B100B3A5AF /* ShowImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageVC.swift; sourceTree = "<group>"; };
+		1DB778F02C05D1B100B3A5AF /* ShowDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailVC.swift; sourceTree = "<group>"; };
 		1DD53B6A2B96CA4200B69595 /* ScanAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanAnimation.swift; sourceTree = "<group>"; };
 		1DD53B6B2B96CA4200B69595 /* ScanCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanCommon.swift; sourceTree = "<group>"; };
 		1DD53B6C2B96CA4200B69595 /* scanResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = scanResource.bundle; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 				1D8E404F2B6CC6E500A9522C /* InheritScanVC.swift */,
 				1D8E404D2B6C930B00A9522C /* CustomizedScanVC.swift */,
 				1D9D93A12B6100F500E3864C /* GenerateCodeVC.swift */,
-				1DB778F02C05D1B100B3A5AF /* ShowImageVC.swift */,
+				1DB778F02C05D1B100B3A5AF /* ShowDetailVC.swift */,
 				1D1091842B5A6D28006A6D99 /* Main.storyboard */,
 				1D1091872B5A6D29006A6D99 /* Assets.xcassets */,
 				1D1091892B5A6D29006A6D99 /* LaunchScreen.storyboard */,
@@ -186,7 +186,7 @@
 				1D8E40502B6CC6E500A9522C /* InheritScanVC.swift in Sources */,
 				1DD53B742B96CA4200B69595 /* ScanImageAction.swift in Sources */,
 				1DD53B772B96CA4200B69595 /* ScanCodeView.swift in Sources */,
-				1DB778F12C05D1B100B3A5AF /* ShowImageVC.swift in Sources */,
+				1DB778F12C05D1B100B3A5AF /* ShowDetailVC.swift in Sources */,
 				1DD53B712B96CA4200B69595 /* ScanAnimation.swift in Sources */,
 				1D1091832B5A6D28006A6D99 /* ViewController.swift in Sources */,
 				1D10917F2B5A6D28006A6D99 /* AppDelegate.swift in Sources */,

@@ -44,6 +44,7 @@ class InheritScanVC: ScanBaseVC {
 }
 
 extension InheritScanVC:ScanBaseVCDelegate {
+    
     func scanCodeBaseDidFinished(result: ScanResult?) {
         print("扫码结果")
     }

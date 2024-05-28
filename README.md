@@ -103,7 +103,7 @@ struct ScanViewStyle {
 结果回调
 ```swift
 extension CustomizedScanVC:ScanCodeViewDelegate, ScanImageActionDelegate{
-    func scanCodeDidFinished(result: String?, codeType: String) {
+    func scanCodeDidFinished (result: ScanResult?) {
         print("扫码结果回调")
     }
     

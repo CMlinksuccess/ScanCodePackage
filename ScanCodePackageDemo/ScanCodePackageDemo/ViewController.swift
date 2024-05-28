@@ -104,6 +104,10 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
 extension ViewController: ScanBaseVCDelegate {
     func scanCodeBaseDidFinished(result: ScanResult?) {
         print("扫码完成的结果内容\(String(describing: result))")
+        let detailvc = ShowDetailVC()
+        detailvc.result = result
+        detailvc.modalPresentationStyle = .fullScreen
+        self.present(detailvc, animated: true)
     }
 
     func scanGenerateCodeImage(image: UIImage?) {

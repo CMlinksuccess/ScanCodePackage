@@ -120,13 +120,19 @@ class CustomizedScanVC: UIViewController {
 
 extension CustomizedScanVC:ScanCodeViewDelegate, ScanImageActionDelegate{
     func scanCodeDidFinished(result: ScanResult?) {
-        dismiss(animated: true)
         print("扫码结果回调")
+        let detailvc = ShowDetailVC()
+        detailvc.result = result
+        detailvc.modalPresentationStyle = .fullScreen
+        self.present(detailvc, animated: true)
     }
 
     func scanImageDidFinished(result: ScanResult?) {
-        dismiss(animated: true)
         print("图片码识别结果回调")
+        let detailvc = ShowDetailVC()
+        detailvc.result = result
+        detailvc.modalPresentationStyle = .fullScreen
+        self.present(detailvc, animated: true)
     }
 }
 
