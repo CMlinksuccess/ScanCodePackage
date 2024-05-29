@@ -61,13 +61,18 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
         
         switch indexPath.row {
         case 0://默认样式
+            
+            scanvc = ScanBaseVC()
             scanvc.modalPresentationStyle = .fullScreen
             scanvc.setGenerateCodeConfig(content: "这是生成二维码的内容",size: CGSize(width: 100, height: 100))
             scanvc.delegate = self
+            scanvc.isDismiss = false
             //自定义按钮事件（所有按钮均可覆盖部分/全部设置）
             scanvc.getCodeBtn.addTarget(self, action: #selector(getCodeClick), for: .touchUpInside)
             self.present(scanvc, animated: true)
+            
         case 1://全屏样式
+            
             scanvc = ScanBaseVC()
             scanvc.modalPresentationStyle = .fullScreen
             scanvc.style.scanAreaStyle = .screen
@@ -77,32 +82,43 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
             scanvc.delegate = self
             //scanvc.getCodeBtn.isHidden = true //可隐藏按钮
             self.present(scanvc, animated: true)
+            
         case 2://继承修改自定义样式
+            
             let scanvc = InheritScanVC()
+            scanvc.delegate = self
             scanvc.modalPresentationStyle = .fullScreen
             self.present(scanvc, animated: true)
+            
         case 3://完全自定义样式
+            
             let scanvc = CustomizedScanVC()
             scanvc.modalPresentationStyle = .fullScreen
             self.present(scanvc, animated: true)
+            
         case 4://生成二维码/条形码
+            
             let scanvc = GenerateCodeVC()
             scanvc.modalPresentationStyle = .fullScreen
             self.present(scanvc, animated: true)
+            
         default:break
         }
     }
     
     @objc func getCodeClick() {
+        
         let codevc = GenerateCodeVC()
         codevc.modalPresentationStyle = .fullScreen
         scanvc.present(codevc, animated: true)
     }
 }
 
-//这里是默认模式和全屏模式的回调
+//这里是默认模式、全屏模式和继承自定义模式的回调
 extension ViewController: ScanBaseVCDelegate {
+    
     func scanCodeBaseDidFinished(result: ScanResult?) {
+        
         print("扫码完成的结果内容\(String(describing: result))")
         let detailvc = ShowDetailVC()
         detailvc.result = result
@@ -111,6 +127,7 @@ extension ViewController: ScanBaseVCDelegate {
     }
 
     func scanGenerateCodeImage(image: UIImage?) {
+        
         print("生成的二维码图片\(String(describing: image))")
     }
 }

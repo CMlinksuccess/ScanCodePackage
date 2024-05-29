@@ -33,12 +33,14 @@ class ScanBaseVC: UIViewController {
     //返回按钮
     public let backBtn: UIButton = UIButton()
     //是否显示标题
-    public var isShowTitle:Bool = true
-    
+    public var isShowTitle: Bool = true
+    //是否需要扫码完成默认dismiss返回
+    public var isDismiss: Bool = true
+    //标题
     public lazy var scanTitle: UILabel = {
     
         let titleLab = UILabel()
-        titleLab.frame = CGRect(x: 0, y: 44, width: view.frame.width, height: 40)
+        titleLab.frame = CGRect(x: 0, y: 40, width: view.frame.width, height: 44)
         titleLab.text = "扫一扫"
         titleLab.textColor = .white
         titleLab.textAlignment = .center
@@ -187,15 +189,29 @@ extension ScanBaseVC: ScanImageActionDelegate,ScanCodeViewDelegate {
     func scanCodeDidFinished(result: ScanResult?) {
         //扫描二维码结果
         if let del = delegate {
-            self.dismiss(animated: true)
-            del.scanCodeBaseDidFinished(result: result)
+            if isDismiss {
+                
+                self.dismiss(animated: true) {
+                    
+                    del.scanCodeBaseDidFinished(result: result)
+                }
+            }else{
+                del.scanCodeBaseDidFinished(result: result)
+            }
         }
     }
     func scanImageDidFinished(result: ScanResult?) {
         //图片扫码结果
         if let del = delegate {
-            self.dismiss(animated: true)
-            del.scanCodeBaseDidFinished(result: result)
+            if isDismiss {
+                
+                self.dismiss(animated: true) {
+                    
+                    del.scanCodeBaseDidFinished(result: result)
+                }
+            }else{
+                del.scanCodeBaseDidFinished(result: result)
+            }
         }
     }
 }

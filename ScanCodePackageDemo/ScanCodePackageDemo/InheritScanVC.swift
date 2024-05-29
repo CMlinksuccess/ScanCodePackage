@@ -30,8 +30,6 @@ class InheritScanVC: ScanBaseVC {
         getCodeBtn.frame = CGRect(x: CGRectGetMaxX(scanRect) - 30, y: 120, width: 30, height: 30)
         //按钮事件修改
         getCodeBtn.addTarget(self, action: #selector(getCodeClick), for: .touchUpInside)
-
-        delegate = self
         
         setGenerateCodeConfig(content: "添加二维码生成的内容",size: CGSize(width: 100, height: 100),codeType: "CIQRCodeGenerator",codeColor: .blue,bgColor: .white)
     }
@@ -40,15 +38,5 @@ class InheritScanVC: ScanBaseVC {
         let codevc = GenerateCodeVC()
         codevc.modalPresentationStyle = .fullScreen
         self.present(codevc, animated: true)
-    }
-}
-
-extension InheritScanVC:ScanBaseVCDelegate {
-    
-    func scanCodeBaseDidFinished(result: ScanResult?) {
-        print("扫码结果")
-    }
-    func scanGenerateCodeImage(image: UIImage?) {
-        print("生成二维码图片")
     }
 }
