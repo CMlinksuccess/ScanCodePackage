@@ -178,8 +178,10 @@ class ScanBaseVC: UIViewController {
     @objc private func getCodeAction() {
         
         if let del = delegate,let con = content {
-            let image = generateQRCodeImage(content: con, size: size, codeColor: codeColor, bgColor: bgColor)
-            del.scanGenerateCodeImage(image: image)
+            generateQRCodeImage(content: con, size: size, codeColor: codeColor, bgColor: bgColor) { image in
+                
+                del.scanGenerateCodeImage(image: image)
+            }
         }
     }
     

@@ -116,6 +116,13 @@ class CustomizedScanVC: UIViewController {
     @objc func backClick(){
         self.dismiss(animated: true)
     }
+    
+    override var shouldAutorotate: Bool{
+        return false //不支持旋转
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait //只支持竖屏
+    }
 }
 
 extension CustomizedScanVC:ScanCodeViewDelegate, ScanImageActionDelegate{

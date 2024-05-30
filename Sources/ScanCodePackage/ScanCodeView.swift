@@ -137,7 +137,7 @@ class ScanCodeView: UIView {
     }
     
     func drawScanView(){
-        scanAreaView = ScanAreaView(frame: frame, viewStyle: scanStyle)
+        scanAreaView = ScanAreaView(frame: bounds, viewStyle: scanStyle)
         addSubview(scanAreaView)
         scanAreaView.startLoading(message: "加载中..")
         

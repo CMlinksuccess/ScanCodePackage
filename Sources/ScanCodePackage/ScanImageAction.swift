@@ -101,44 +101,121 @@ extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControll
     }
 }
 
-///生成二维码图片
-    public func generateQRCodeImage(content:String, size:CGSize = CGSize(width: 50, height: 50),codeType:String = "CIQRCodeGenerator",codeColor:UIColor = .black, bgColor:UIColor = .white) -> UIImage?{
-        
-        let contentData = content.data(using: .utf8)
-        /***
-         CIQRCodeGenerator      二维码
-         CIAztecCodeGenerator  二维码,暂不支持
-            .....
-         */
-        guard let qrFilter = CIFilter(name: codeType) else { return nil }
-        qrFilter.setDefaults()
-        qrFilter.setValue(contentData, forKey: "inputMessage")
-        qrFilter.setValue("H", forKey: "inputCorrectionLevel")
-        
-        guard let qrImage = qrFilter.outputImage else { return nil }
-        //修改颜色
-        let colorFilter = CIFilter(name: "CIFalseColor",
-                                   parameters:
-                                    [
-                                        "inputImage":qrImage,
-                                        "inputColor0":CIColor(color: codeColor),
-                                        "inputColor1":CIColor(color: bgColor)
-                                    ])
-        
-        guard let outputImage = colorFilter?.outputImage, let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent) else {
-            return nil
+//MARK: - 生成二维码图片异步调用
+public func generateQRCodeImage(content:String, size:CGSize = CGSize(width: 50, height: 50),codeType:String = "CIQRCodeGenerator",codeColor:UIColor = .black, bgColor:UIColor = .white, complete:@escaping((UIImage?)->Void)){
+        DispatchQueue.global(qos: .userInitiated).async {
+            let contentData = content.data(using: .utf8)
+            /***
+             CIQRCodeGenerator      二维码
+             CIAztecCodeGenerator  二维码,暂不支持
+                .....
+             */
+            guard let qrFilter = CIFilter(name: codeType) else {
+                complete(nil)
+                return
+            }
+            qrFilter.setDefaults()
+            qrFilter.setValue(contentData, forKey: "inputMessage")
+            // 设置容错率，可选值：L(7%), M(15%), Q(25%), H(30%)
+            qrFilter.setValue("H", forKey: "inputCorrectionLevel")
+            
+            guard let qrImage = qrFilter.outputImage else {
+                complete(nil)
+                return
+            }
+            //修改颜色
+            let colorFilter = CIFilter(name: "CIFalseColor",
+                                       parameters:
+                                        [
+                                            "inputImage":qrImage,
+                                            "inputColor0":CIColor(color: codeColor),
+                                            "inputColor1":CIColor(color: bgColor)
+                                        ])
+            
+            guard let outputImage = colorFilter?.outputImage, let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent) else {
+                complete(nil)
+                return
+            }
+            UIGraphicsBeginImageContext(size)
+            let context = UIGraphicsGetCurrentContext()!
+            context.interpolationQuality = CGInterpolationQuality.none
+            context.scaleBy(x: 1.0, y: -1.0)
+            context.draw(cgImage, in: context.boundingBoxOfClipPath)
+            let codeImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            DispatchQueue.main.async {
+                complete(codeImage)
+            }
         }
-        UIGraphicsBeginImageContext(size)
-        let context = UIGraphicsGetCurrentContext()!
-        context.interpolationQuality = CGInterpolationQuality.none
-        context.scaleBy(x: 1.0, y: -1.0)
-        context.draw(cgImage, in: context.boundingBoxOfClipPath)
-        let codeImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return codeImage
     }
-///生成条形码图片
+//MARK: - 生成二维码图片同步调用
+public func generateQRCodeImage(content:String, size:CGSize = CGSize(width: 50, height: 50),codeType:String = "CIQRCodeGenerator",codeColor:UIColor = .black, bgColor:UIColor = .white) -> UIImage?{
+    
+    let contentData = content.data(using: .utf8)
+    /***
+     CIQRCodeGenerator      二维码
+     CIAztecCodeGenerator  二维码,暂不支持
+        .....
+     */
+    guard let qrFilter = CIFilter(name: codeType) else { return nil }
+    qrFilter.setDefaults()
+    qrFilter.setValue(contentData, forKey: "inputMessage")
+    qrFilter.setValue("H", forKey: "inputCorrectionLevel")
+    
+    guard let qrImage = qrFilter.outputImage else { return nil }
+    //修改颜色
+    let colorFilter = CIFilter(name: "CIFalseColor",
+                               parameters:
+                                [
+                                    "inputImage":qrImage,
+                                    "inputColor0":CIColor(color: codeColor),
+                                    "inputColor1":CIColor(color: bgColor)
+                                ])
+    
+    guard let outputImage = colorFilter?.outputImage, let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent) else {
+        return nil
+    }
+    UIGraphicsBeginImageContext(size)
+    let context = UIGraphicsGetCurrentContext()!
+    context.interpolationQuality = CGInterpolationQuality.none
+    context.scaleBy(x: 1.0, y: -1.0)
+    context.draw(cgImage, in: context.boundingBoxOfClipPath)
+    let codeImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return codeImage
+}
+//MARK: - 生成条形码图片异步调用
+    public func generateBarCodeImage(content:String, codeType:String = "CICode128BarcodeGenerator",complete:@escaping((UIImage?)->Void)){
+        DispatchQueue.global(qos: .userInitiated).async {
+            let contentData = content.data(using: .utf8)
+            /***
+             CICode128BarcodeGenerator 条形码
+             CIPDF417BarcodeGenerator  条形码
+                .....
+             */
+            guard let qrFilter = CIFilter(name: codeType) else {
+                complete(nil)
+                return
+            }
+            qrFilter.setDefaults()
+            qrFilter.setValue(contentData, forKey: "inputMessage")
+            
+            guard let outputImage = qrFilter.outputImage, let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent) else {
+                complete(nil)
+                return
+            }
+            
+            let image = UIImage(cgImage: cgImage, scale: 1.0, orientation: .up)
+            let resizeImage = resizeImage(image: image, quality: .none, rate: 20)
+            
+            DispatchQueue.main.async {
+                complete(resizeImage)
+            }
+        }
+    }
+//MARK: - 生成条形码图片同步调用
     public func generateBarCodeImage(content:String, codeType:String = "CICode128BarcodeGenerator") -> UIImage?{
         
         let contentData = content.data(using: .utf8)
@@ -159,8 +236,7 @@ extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControll
         let resizeImage = resizeImage(image: image, quality: .none, rate: 20)
         return resizeImage
     }
-
-//图片缩放
+//MARK: - 图片缩放
     public func resizeImage(image:UIImage, quality:CGInterpolationQuality, rate: CGFloat) -> UIImage? {
         var resized:UIImage?
         let width = image.size.width * rate

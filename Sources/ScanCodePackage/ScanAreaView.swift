@@ -101,7 +101,6 @@ open class ScanAreaView: UIView {
         ScanAnimation.shared.scanAnimation(animationRect, self, imageView: imageview, style: viewStyle.animationStyle)
     }
     
-    
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
 
