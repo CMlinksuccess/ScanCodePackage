@@ -152,3 +152,34 @@ public func getBundleImage(name:String) -> UIImage? {
     }
     return nil
 }
+
+
+extension UIImage {
+    
+    //添加二维码图片中心图片
+    public func addQRCenterIcon(_ centerIcon: UIImage?, size:CGSize = .zero) -> UIImage {
+        
+        guard let icon = centerIcon else { return self }
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+
+        let wid = self.size.width
+        let hei = self.size.height
+        let rect = CGRect(x: 0, y: 0, width: wid, height: hei)
+        
+        self.draw(in: rect)
+       
+        var iconW = size.width
+        var iconH = size.height
+        if size.equalTo(.zero) {//默认大小
+            iconW = wid/4.0
+            iconH = hei/4.0
+        }
+        let iconRect = CGRect(x: (wid - iconW)/2.0, y: (hei - iconH)/2.0, width: iconW, height: iconW)
+        icon.draw(in: iconRect)
+        
+        let resImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return resImage ?? self
+    }
+}

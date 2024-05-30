@@ -66,7 +66,6 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
             scanvc.modalPresentationStyle = .fullScreen
             scanvc.setGenerateCodeConfig(content: "这是生成二维码的内容",size: CGSize(width: 100, height: 100))
             scanvc.delegate = self
-            scanvc.isDismiss = false
             //自定义按钮事件（所有按钮均可覆盖部分/全部设置）
             scanvc.getCodeBtn.addTarget(self, action: #selector(getCodeClick), for: .touchUpInside)
             self.present(scanvc, animated: true)

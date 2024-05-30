@@ -181,7 +181,13 @@ class ScanBaseVC: UIViewController {
             let image = generateQRCodeImage(content: con, size: size, codeColor: codeColor, bgColor: bgColor)
             del.scanGenerateCodeImage(image: image)
         }
-        
+    }
+    
+    override var shouldAutorotate: Bool{
+        return false //不支持旋转
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait //只支持竖屏
     }
 }
 

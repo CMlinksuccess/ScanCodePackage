@@ -36,7 +36,6 @@ class ScanCodeView: UIView {
         }
     }
     
-    
     public weak var scanDelegate:ScanCodeViewDelegate?
     
     public var scanAreaView:ScanAreaView = ScanAreaView()
@@ -122,6 +121,7 @@ class ScanCodeView: UIView {
 
     //开启扫描
     public func startSession() {
+        ScanAnimation.shared.startAnimation()
         let dispatchQueue = DispatchQueue(label: "scan_start_queue",qos: .userInteractive)
         dispatchQueue.async {
             self.captureSession.startRunning()

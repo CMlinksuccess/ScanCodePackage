@@ -100,7 +100,21 @@ struct ScanViewStyle {
     init() { }
 }
 ```
-结果回调
+3、结果回调
+
+默认结果回调
+```swift
+extension ViewController: ScanBaseVCDelegate {
+    func scanCodeBaseDidFinished(result: ScanResult?) {
+        print("扫码和图码识别完成的结果回调\(String(describing: result))")
+    }
+
+    func scanGenerateCodeImage(image: UIImage?) {
+        print("生成的二维码图片结果回调\(String(describing: image))")
+    }
+}
+```
+全自定义模式结果回调
 ```swift
 extension CustomizedScanVC:ScanCodeViewDelegate, ScanImageActionDelegate{
     func scanCodeDidFinished (result: ScanResult?) {
@@ -112,7 +126,7 @@ extension CustomizedScanVC:ScanCodeViewDelegate, ScanImageActionDelegate{
     }
 }
 ```
-3、生成二维码/条形码
+4、生成二维码/条形码
 ```swift
 //生成二维码
  let image =  generateQRCodeImage(content: "生成二维码的内容8993847349",size: CGSize(width: 200, height: 200), codeType: "CIQRCodeGenerator",codeColor: .green,bgColor: .white)

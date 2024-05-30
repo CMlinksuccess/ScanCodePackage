@@ -33,14 +33,19 @@ class GenerateCodeVC: UIViewController {
         self.dismiss(animated: true)
     }
     
-    
     func QRImageView(){
         //生成二维码
-        let image =  generateQRCodeImage(content: "生成二维码的内容8993847349",size: CGSize(width: 200, height: 200), codeType: "CIQRCodeGenerator",codeColor: .green,bgColor: .white)
+        let image =  generateQRCodeImage(content: "这是生成二维码的内容8993847349",size: CGSize(width: 200, height: 200), codeType: "CIQRCodeGenerator",codeColor: .green,bgColor: .white)
         let imageView = UIImageView(image: image)
-        imageView.frame = CGRectMake(0, 0, 200, 200)
-        imageView.center = CGPoint(x: view.center.x, y: 300)
+        imageView.frame = CGRectMake(0, 0, 150, 150)
+        imageView.center = CGPoint(x: view.center.x, y: 200)
         view.addSubview(imageView)
+        
+        let newImage =  image?.addQRCenterIcon(UIImage(named: "icon_header"))
+        let newImageView = UIImageView(image: newImage)
+        newImageView.frame = CGRectMake(0, 0, 150, 150)
+        newImageView.center = CGPoint(x: view.center.x, y: 400)
+        view.addSubview(newImageView)
     }
     
     func barCodeImageView(){
@@ -52,7 +57,7 @@ class GenerateCodeVC: UIViewController {
             let resizeImage = resizeImage(image: img, quality: .none, rate: 2)
             let imageView = UIImageView(image: resizeImage)
             imageView.frame = CGRectMake(0, 0, 200, 50)
-            imageView.center = CGPoint(x: view.center.x, y: 500)
+            imageView.center = CGPoint(x: view.center.x, y: 550)
             view.addSubview(imageView)
         }
     }
