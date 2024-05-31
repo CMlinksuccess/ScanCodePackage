@@ -153,7 +153,6 @@ public func getBundleImage(name:String) -> UIImage? {
     return nil
 }
 
-
 extension UIImage {
     
     //添加二维码图片中心图片

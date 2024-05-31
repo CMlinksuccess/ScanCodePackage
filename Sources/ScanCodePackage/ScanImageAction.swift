@@ -17,9 +17,7 @@ protocol ScanImageActionDelegate:NSObjectProtocol {
 
 class ScanImageAction: NSObject{
     
-    
     public weak var delegate: ScanImageActionDelegate?
-    
     private let pickControl = UIImagePickerController()
     
     //选择相册图片并识别二维码

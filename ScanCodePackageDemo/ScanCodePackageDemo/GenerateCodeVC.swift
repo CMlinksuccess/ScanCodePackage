@@ -47,8 +47,8 @@ class GenerateCodeVC: UIViewController {
         newImageView.center = CGPoint(x: view.center.x, y: 400)
         view.addSubview(newImageView)
         
-        //生成二维码
-        generateQRCodeImage(content: "这是生成二维码的内容8993847349- https://pay-tw.blustargames.com/token/payData?param=tag:buyFail,data:gameID:3061,channel:1045,extend:345678987654;3;2;1045;20,amount:9.99,deviceType:0,uid:345678987654,productID:s.sea.rhs.03,openid:306101a1516371731596644352,appOrderID:2204201500106560394,bundleID:com.blustar.projects.ios,productIdentifier:s.sea.rhs.03 https://pay-tw.blustargames.com/token/payData?param=tag:buyFail,data:gameID:3061,channel:1045,extend:345678987654;3;2;1045;20,amount:9.99,deviceType:0,uid:345678987654,productID:s.sea.rhs.03,openid:306101a1516371731596644352,appOrderID:2204201500106560394,bundleID:com.blustar.projects.ios,productIdentifier:s.sea.rhs.03 https://pay-tw.blustargames.com/token/payData?param=tag:buyFail,data:gameID:3061,channel:1045,extend:345678987654;3;2;1045;20,amount:9.99,deviceType:0,uid:345678987654,productID:s.sea.rhs.03,openid:306101a1516371731596644352,appOrderID:2204201500106560394,bundleID:com.blustar.projects.ios,productIdentifier:s.sea.rhs.03 https://pay-tw.blustargames.com/token/payData?param=tag:buyFail,data:gameID:3061,channel:1045,extend:345678987654;3;2;1045;20,amount:9.99,deviceType:0,uid:345678987654,productID:s.sea.rhs.03,openid:306101a1516371731596644352,appOrderID:2204201500106560394,bundleID:com.blustar.projects.ios,productIdentifier:s.sea.rhs.03",size: CGSize(width: 200, height: 200), codeType: "CIQRCodeGenerator",codeColor: .green,bgColor: .white) { image in
+        //生成二维码（内部提供了同步方法）
+        generateQRCodeImage(content: "这是生成二维码的内容8993847349",size: CGSize(width: 200, height: 200), codeType: "CIQRCodeGenerator",codeColor: .green,bgColor: .white) { image in
             //原图
             imageView.image = image
             
@@ -59,19 +59,16 @@ class GenerateCodeVC: UIViewController {
     }
     
     func barCodeImageView(){
-        //生成条形码
-//        let image =  generateBarCodeImage(content: "7928347957wjer",codeType: "CICode128BarcodeGenerator")
-        generateBarCodeImage(content: "7928347957wjer",codeType: "CICode128BarcodeGenerator") { image in
+        //生成条形码（内部提供了异步方法,条形码长度短，一般不需要）
+        let image =  generateBarCodeImage(content: "7928347957wjer",codeType: "CICode128BarcodeGenerator")
+        //缩放图片大小
+        if let img = image {
             
-            //缩放图片大小
-            if let img = image {
-                
-                let resizeImage = resizeImage(image: img, quality: .none, rate: 2)
-                let imageView = UIImageView(image: resizeImage)
-                imageView.frame = CGRectMake(0, 0, 200, 50)
-                imageView.center = CGPoint(x: self.view.center.x, y: 550)
-                self.view.addSubview(imageView)
-            }
+            let resizeImage = resizeImage(image: img, quality: .none, rate: 2)
+            let imageView = UIImageView(image: resizeImage)
+            imageView.frame = CGRectMake(0, 0, 200, 50)
+            imageView.center = CGPoint(x: self.view.center.x, y: 550)
+            self.view.addSubview(imageView)
         }
     }
 }
