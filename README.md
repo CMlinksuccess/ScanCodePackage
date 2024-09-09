@@ -31,6 +31,19 @@ $ pod install
 2. 自定义扫码界面UI（继承式自定义修改样式，完全自定义调用封装组件）
 3. 生成二维码/条形码
 
+## 权限配置
+在info.plist中添加相关权限配置
+```
+<key>NSCameraUsageDescription</key>
+<string>需要访问相机来拍摄照片</string>
+
+<key>NSPhotoLibraryUsageDescription</key>
+<string>需要访问相册来选择照片</string>
+
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>需要访问相册以保存图片</string>
+
+```
 ## 使用方法
 
 1、调用扫描页面，监听ScanBaseVCDelegate 实现结果回调
