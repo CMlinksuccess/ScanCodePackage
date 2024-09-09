@@ -7,7 +7,7 @@
 
 import UIKit
 
- protocol ScanBaseVCDelegate:NSObjectProtocol{
+public protocol ScanBaseVCDelegate:NSObjectProtocol{
     
     //扫码完成的回调
     func scanCodeBaseDidFinished(result:ScanResult?)
@@ -16,7 +16,7 @@ import UIKit
     func scanGenerateCodeImage(image:UIImage?)
 }
 
-class ScanBaseVC: UIViewController {
+public class ScanBaseVC: UIViewController {
     //配置类参数
     public var scanView: ScanCodeView = ScanCodeView()
     public var style: ScanViewStyle = ScanViewStyle()
@@ -64,7 +64,7 @@ class ScanBaseVC: UIViewController {
         self.bgColor = bgColor
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         //创建扫码界面
@@ -86,11 +86,11 @@ class ScanBaseVC: UIViewController {
         self.dismiss(animated: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scanView.startSession()
     }
-    override func viewDidDisappear(_ animated: Bool) {
+    public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scanView.stopSession()
     }
@@ -185,16 +185,16 @@ class ScanBaseVC: UIViewController {
         }
     }
     
-    override var shouldAutorotate: Bool{
+    public override var shouldAutorotate: Bool{
         return false //不支持旋转
     }
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait //只支持竖屏
     }
 }
 
 extension ScanBaseVC: ScanImageActionDelegate,ScanCodeViewDelegate {
-    func scanCodeDidFinished(result: ScanResult?) {
+    public func scanCodeDidFinished(result: ScanResult?) {
         //扫描二维码结果
         if let del = delegate {
             if isDismiss {
@@ -208,7 +208,7 @@ extension ScanBaseVC: ScanImageActionDelegate,ScanCodeViewDelegate {
             }
         }
     }
-    func scanImageDidFinished(result: ScanResult?) {
+    public func scanImageDidFinished(result: ScanResult?) {
         //图片扫码结果
         if let del = delegate {
             if isDismiss {

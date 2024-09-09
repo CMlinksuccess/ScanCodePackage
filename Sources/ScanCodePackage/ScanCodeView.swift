@@ -8,11 +8,11 @@
 import UIKit
 import AVFoundation
 
-protocol ScanCodeViewDelegate: NSObjectProtocol {
+public protocol ScanCodeViewDelegate: NSObjectProtocol {
     //扫码完成的回调
     func scanCodeDidFinished(result:ScanResult?)
 }
-class ScanCodeView: UIView {
+public class ScanCodeView: UIView {
     //扫码结束提示音文件路径
     public var soundFilePath:String?
     //是否播放扫码结束提示音, soundFilePath路径有值时有效
@@ -211,7 +211,7 @@ class ScanCodeView: UIView {
 
 extension ScanCodeView: AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureMetadataOutputObjectsDelegate{
     
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
        let AttachmentDic = CMCopyDictionaryOfAttachments(allocator: nil, target: sampleBuffer, attachmentMode: kCMAttachmentMode_ShouldPropagate)
         
         guard let metadata = AttachmentDic as? [String: Any], let exifMetadata = metadata[kCGImagePropertyExifDictionary as String] as? [String: Any], let brightnessValue = exifMetadata[kCGImagePropertyExifBrightnessValue as String] as? Double else { return }
@@ -221,7 +221,7 @@ extension ScanCodeView: AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureMe
         }
     }
     
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
         if isPlaySound && soundFilePath != nil { playSound() }
         //暂停扫描

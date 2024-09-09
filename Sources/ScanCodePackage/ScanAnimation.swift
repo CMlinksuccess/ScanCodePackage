@@ -8,7 +8,7 @@
 import UIKit
 
 
- class ScanAnimation: NSObject {
+public class ScanAnimation: NSObject {
     
     static let shared:ScanAnimation = {
         

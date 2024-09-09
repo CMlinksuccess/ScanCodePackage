@@ -10,12 +10,12 @@ import AVFoundation
 import Photos
 import Vision
 
-protocol ScanImageActionDelegate:NSObjectProtocol {
+public protocol ScanImageActionDelegate:NSObjectProtocol {
     //识码结果回调
     func scanImageDidFinished(result:ScanResult?)
 }
 
-class ScanImageAction: NSObject{
+public class ScanImageAction: NSObject{
     
     public weak var delegate: ScanImageActionDelegate?
     private let pickControl = UIImagePickerController()
@@ -94,7 +94,7 @@ extension ScanImageAction:UIImagePickerControllerDelegate & UINavigationControll
             }
         }
     }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
     }
 }
