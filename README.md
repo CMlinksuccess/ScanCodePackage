@@ -42,7 +42,6 @@ $ pod install
 
 <key>NSPhotoLibraryAddUsageDescription</key>
 <string>需要访问相册以保存图片</string>
-
 ```
 ## 使用方法
 

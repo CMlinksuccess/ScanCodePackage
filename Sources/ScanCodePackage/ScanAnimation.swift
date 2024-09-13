@@ -23,7 +23,7 @@ public class ScanAnimation: NSObject {
     
     private var tempFrame: CGRect?
     
-    private var contentHeight: CGFloat?
+    private var contentHeight: CGFloat = 0
     
     private var animationStyle: ScanAnimationStyle = .lineMove
     
@@ -66,7 +66,7 @@ public class ScanAnimation: NSObject {
     }
     
     @objc private func animation(){
-        if animationImageView.frame.maxY > contentHeight! {
+        if animationImageView.frame.maxY > contentHeight {
             animationImageView.frame = tempFrame ?? .zero
         }
         //心率距离
