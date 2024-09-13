@@ -19,6 +19,8 @@ public class ScanCodeView: UIView {
     public var isPlaySound:Bool = true
     //扫描实时亮度光线值 <-1
     public var brightnessChange:((Double) -> Void)?
+    //预设扫描时相机分辨率，分别率高消耗性能大，按需设置
+    public var sessionPreset:AVCaptureSession.Preset = .medium
     
     //闪光灯设置
     public var flashModel:AVCaptureDevice.TorchMode = .auto{
@@ -81,7 +83,7 @@ public class ScanCodeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        captureSession.sessionPreset = .high
+        captureSession.sessionPreset = sessionPreset
     }
     
     required init?(coder: NSCoder) {

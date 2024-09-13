@@ -31,7 +31,7 @@ public enum ScanFrameAngleStyle {
 
 //MARK: 扫描码类型
 public enum MetaDataType {
-    case allType //所有类型
+    case allType //所有类型,类型越多处理性能越低，尽量按需添加所需类型
     case qrType  //二维码类型
     case barType //条形码类型
     case customize(scanType:[AVMetadataObject.ObjectType])//自定义类型

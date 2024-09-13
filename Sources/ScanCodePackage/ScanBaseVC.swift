@@ -113,6 +113,7 @@ public class ScanBaseVC: UIViewController {
         scanView.scanDelegate = self
         //声音文件
         scanView.soundFilePath = "noticeMusic.caf"
+        scanView.sessionPreset = .low
         //开启扫描
         scanView.startScan()
         view.addSubview(scanView)

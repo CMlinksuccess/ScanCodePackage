@@ -56,7 +56,7 @@ class CustomizedScanVC: UIViewController {
         
         //声音文件
         scanView.soundFilePath = "noticeMusic.caf"
-        
+        scanView.sessionPreset = .high
         //设置自动打开手电筒
         scanView.brightnessChange = { brightValue in
             //注意：系统默认brightValue 只返回小于-1的值，即为黑暗情况
