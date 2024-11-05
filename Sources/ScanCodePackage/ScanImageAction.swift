@@ -9,6 +9,7 @@ import UIKit
 import AVFoundation
 import Photos
 import Vision
+import Metal
 
 public protocol ScanImageActionDelegate:NSObjectProtocol {
     //识码结果回调

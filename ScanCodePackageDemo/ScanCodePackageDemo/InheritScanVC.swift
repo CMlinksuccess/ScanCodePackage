@@ -23,7 +23,7 @@ class InheritScanVC: ScanBaseVC {
         
         scanTitle.text = "扫一扫"
         scanTitle.textColor = .red
-        let scanRect = scanView.scanAreaView.getScanAreaRect(backView: view, viewStyle: style)
+        let scanRect = scanView.scanAreaView.getScanAreaRect(viewStyle: style)
         
         //修改按钮位置
         photoBtn.frame = CGRect(x: scanRect.origin.x, y: 120, width: 40, height: 40)

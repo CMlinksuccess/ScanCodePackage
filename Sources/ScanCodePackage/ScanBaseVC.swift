@@ -63,6 +63,7 @@ public class ScanBaseVC: UIViewController {
         self.codeColor = codeColor
         self.bgColor = bgColor
     }
+    private var scanRect = CGRectZero
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,11 +114,18 @@ public class ScanBaseVC: UIViewController {
         scanView.scanDelegate = self
         //声音文件
         scanView.soundFilePath = "noticeMusic.caf"
-        scanView.sessionPreset = .low
+        scanView.sessionPreset = .high
         //开启扫描
         scanView.startScan()
         view.addSubview(scanView)
         
+        if scanView.scanStyle.scanAreaStyle == .angle {
+            
+            scanRect = scanView.scanAreaView.getScanAreaRect(viewStyle: style)
+        }else {
+            scanRect = CGRect(x: view.frame.width/5.0, y: view.frame.height/5.0, width: view.frame.width * 3/5.0, height: view.frame.height * 2.2/5.0)
+        }
+
         //添加图片识别二维码按钮
         createPhotoImageButton()
         //添加闪光灯按钮
@@ -127,8 +135,10 @@ public class ScanBaseVC: UIViewController {
     }
     //创建图片识码按钮
     private func createPhotoImageButton(){
-        let scanRect = scanView.scanAreaView.getScanAreaRect(backView: view, viewStyle: style)
         photoBtn.frame = CGRect(x: scanRect.origin.x, y: CGRectGetMaxY(scanRect) + 100, width: 40, height: 40)
+        if scanView.scanStyle.scanAreaStyle == .screen{
+            photoBtn.frame = CGRect(x: scanRect.origin.x, y: CGRectGetMaxY(scanRect) + 100, width: 40, height: 40)
+        }
         photoBtn.setBackgroundImage(getBundleImage(name: "photo_img"), for: .normal)
         photoBtn.addTarget(self, action: #selector(photoImageAction), for: .touchUpInside)
         scanView.addSubview(photoBtn)
@@ -140,7 +150,6 @@ public class ScanBaseVC: UIViewController {
     }
     //创建手电筒
     private func createFlashButton(){
-        let scanRect = scanView.scanAreaView.getScanAreaRect(backView: view, viewStyle: style)
         flashBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 40)
         flashBtn.center = CGPoint(x: view.center.x, y: CGRectGetMaxY(scanRect) + 70)
         flashBtn.setBackgroundImage(getBundleImage(name: "flash_off"), for: .normal)
@@ -169,7 +178,6 @@ public class ScanBaseVC: UIViewController {
     }
     //创建生成二维码按钮
     private func createGetCodeButton(){
-        let scanRect = scanView.scanAreaView.getScanAreaRect(backView: view, viewStyle: style)
         getCodeBtn.frame = CGRect(x: CGRectGetMaxX(scanRect) - 35, y: CGRectGetMaxY(scanRect) + 100, width: 35, height: 35)
         getCodeBtn.setBackgroundImage(getBundleImage(name: "getcode_img"), for: .normal)
         getCodeBtn.addTarget(self, action: #selector(getCodeAction), for: .touchUpInside)

@@ -340,9 +340,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3AUS8C58UZ;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScanCodePackageDemo/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "访问相机";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "保存图片到相册";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "访问相册";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -369,9 +372,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3AUS8C58UZ;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScanCodePackageDemo/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "访问相机";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "保存图片到相册";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "访问相册";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

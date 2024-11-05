@@ -20,7 +20,7 @@ public class ScanCodeView: UIView {
     //扫描实时亮度光线值 <-1
     public var brightnessChange:((Double) -> Void)?
     //预设扫描时相机分辨率，分别率高消耗性能大，按需设置
-    public var sessionPreset:AVCaptureSession.Preset = .medium
+    public var sessionPreset:AVCaptureSession.Preset = .high
     
     //闪光灯设置
     public var flashModel:AVCaptureDevice.TorchMode = .auto{
@@ -142,7 +142,7 @@ public class ScanCodeView: UIView {
         scanAreaView = ScanAreaView(frame: bounds, viewStyle: scanStyle)
         addSubview(scanAreaView)
         scanAreaView.startLoading(message: "加载中..")
-        
+        //let scanArea = scanAreaView.getScanAreaRect(viewStyle: scanStyle)
         //添加双击缩放事件
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGuesture))
         tap.numberOfTapsRequired = 2
@@ -190,6 +190,8 @@ public class ScanCodeView: UIView {
         captureSession.addOutput(videDataOutput)
         
         let metadataOutput = AVCaptureMetadataOutput()
+        let rect = scanAreaView.getScanAreaRect(viewStyle: scanStyle)
+        metadataOutput.rectOfInterest = videoPreviewLayer?.metadataOutputRectConverted(fromLayerRect: rect) ?? CGRect(x: 0, y: 0, width: 1, height: 1)
         captureSession.addOutput(metadataOutput)
         metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         for type in metadata.value {
@@ -224,13 +226,11 @@ extension ScanCodeView: AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureMe
     }
     
     public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        
-        if isPlaySound && soundFilePath != nil { playSound() }
-        //暂停扫描
-        stopSession()
-        
-        guard let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject else { return }
-        if let del = scanDelegate {
+
+        if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject, let del = scanDelegate {
+            if isPlaySound && soundFilePath != nil { playSound() }
+            //暂停扫描
+            stopSession()
             let result = ScanResult(content: object.stringValue,descriptor: object.descriptor,codeType: object.type.rawValue)
             del.scanCodeDidFinished(result: result)
         }

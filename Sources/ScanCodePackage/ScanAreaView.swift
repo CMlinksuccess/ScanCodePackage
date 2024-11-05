@@ -213,8 +213,11 @@ open class ScanAreaView: UIView {
         addTipLabel()
     }
     //获取扫码识别区域
-    public func getScanAreaRect(backView:UIView, viewStyle:ScanViewStyle) -> CGRect {
-        
+    public func getScanAreaRect(viewStyle:ScanViewStyle) -> CGRect {
+        if viewStyle.scanAreaStyle == .screen {
+            scanAreaRect = CGRect(x: 0, y: bounds.height/5.0, width: bounds.width, height: bounds.height * 2.2/5.0)
+            return scanAreaRect
+        }
         let retangleLeft = viewStyle.retangleOffsetX
         var retangleSize = CGSize(width: frame.size.width - retangleLeft * 2.0, height: frame.size.width - retangleLeft * 2.0)
         

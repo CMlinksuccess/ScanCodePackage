@@ -78,7 +78,7 @@ class CustomizedScanVC: UIViewController {
     }
     
     func addMyBtn(){
-        let areaRect = scanView.scanAreaView.getScanAreaRect(backView: view, viewStyle: style)
+        let areaRect = scanView.scanAreaView.getScanAreaRect(viewStyle: style)
         let btn1 = UIButton()
         btn1.setTitle("自定义按钮1", for: .normal)
         btn1.setTitleColor(.yellow, for: .normal)
